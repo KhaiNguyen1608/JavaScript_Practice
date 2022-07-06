@@ -1,53 +1,71 @@
 
 
 
-//Bài tập 1:
-//Input
-var workDays =  24;
+//Bài tập 1: Cho người dùng nhập vào 3 số nguyên. Viết chương trình xuất 3 số theo thứ tự tăng dần
+//Input: Nhập 1 mảng số
+var arrNumber = [3,11,2];
 //Process
-var result1 = workDays * 100000;
+arrNumber.sort((a,b) => a - b);
 //Output
-console.log("Tổng lương trong tháng là:", result1);
+console.log("Chuỗi số sau khi sắp xếp là:", arrNumber);
 
-//Bài tập 2
-//Input
-var numb1 = 232;
-var numb2 = 34;
-var numb3 = 87;
-var numb4 = 53;
-var numb5 = 12;
+//Bài tập 2:
+//Input:
+var familyMember = 'E';
+var greeting = '';
 //Process
-var result2 = (numb1 + numb2 + numb3 + numb4 + numb5) / 5;
+switch (familyMember)
+{
+    case 'B':
+        greeting = "Con chào Ba";
+        break;
+    case 'A':
+        greeting = "Em chào Anh";
+        break;
+    case 'E':
+        greeting = "Anh chào Em";
+        break;
+    default:
+        greeting = "Con chào Mẹ";
+}
 //Output
-console.log("Giá trị trung bình:",result2);
+console.log(greeting);
 
-//Bài tập 3
-//Input
-var usd = 4;
-var vnd = 23.500;
+//Bài tập 3:
+//Input: Nhập 1 mảng số
+var arrNumber2 = [69,22,101];
+var oddCount = 0;
+var evenCount = 0;
 //Process
-var result3 = usd * vnd;
+arrNumber2.forEach(function(x) {
+    if(x % 2 > 0)
+        oddCount++;
+    else
+        evenCount++;
+});
 //Output
-console.log("Số tiền sau khi quy đổi:",result3);
+console.log("Số luống số lẻ:",oddCount);
+console.log("Số luống số chẵn:",evenCount);
 
-//Bài tập 4
-//Input
-var recWidth = 10;
-var recHeight = 4.5;
+//Bài tập 4: Viết chương trình cho nhập 3 cạnh của tam giác. Hãy cho biết đó là tam giác gì?
+//Input:
+var a = 2;
+var b = 2;
+var c = 2;
+var triangle = "Tam giác bình thường";
+var powA = Math.pow(a,2);
+var powB = Math.pow(b,2);
+var powC = Math.pow(c,2);
 //Process
-var result41 = recHeight * recWidth;
-var result42 = (recHeight + recWidth) * 2;
-//Output
-console.log("Diện tích:",result41);
-console.log("Chu vi:",result42);
+if(a === b && b === c) {
+    triangle = "Tam giác đều";
+}
+else if(a === b || a === c || b === c) {
+    triangle = "Tam giác cân";
+}
+else if (powC === powA + powB || powA === powC + powB || powB === powA + powC) {
+    triangle = "Tam giác vuông";
 
-
-//Bài tập 5
-//Input
-var tmpNumber = 86;
-//Process
-var so_hang_dv = tmpNumber % 10;
-var so_hang_chuc = parseInt((tmpNumber%100)/10)
-var result5 = so_hang_dv + so_hang_chuc;
+}
 //Output
-console.log("Tổng 2 ký số của số vừa nhập:",result5);
+console.log("Hình",triangle);
