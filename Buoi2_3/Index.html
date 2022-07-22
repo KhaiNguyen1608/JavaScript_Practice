@@ -4,12 +4,56 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <title>JavaScript Practice</title>
+    
     <link rel="stylesheet" href="./Style.css">
 </head>
 <body>
-    <h2>Bài tập JavaScript</h2>
 
+    <div class="container">
+        <h1>Bài tập 1: Tính tổng lương</h1>
+        <div>
+            <input type="number" id="txtNum" class="form-control" placeholder="Số ngày làm"/>
+            <input type="number" id="txtNum1" class="form-control mt-1" placeholder="Nhập lương một ngày"/>
+            <div id="resultBT1" class="alert alert-success mt-3"></div>
+            <button class="btn btn-success" onclick="baiTap1()">Kết quả</button>
+        </div>
+        
+        <hr/>
+        <h1>Bài tập 2: Tính giá trị trung bình (nhập các số cách nhau 1 khoảng trắng)</h1>
+        <div>
+            <input type="text" id="txtNumBT2" class="form-control" placeholder="Nhập dãy số cách nhau 1 khoảng trắng"/>
+            <div id="resultBT2" class="alert alert-warning mt-3"></div>
+            <button class="btn btn-outline-danger" onclick="baiTap2()">Kết quả</button>
+        </div>
+
+        <hr/>
+        <h1>Bài tập 3: Quy đổi tiền</h1>
+        <div>
+            <input type="number" id="txtNumBT3" class="form-control" placeholder="Nhập số tiền usd"/>
+            <div id="resultBT3" class="alert alert-info mt-3"></div>
+            <button class="btn btn-outline-danger" onclick="baiTap3()">Kết quả</button>
+        </div>
+
+        <hr/>
+        <h1>Bài tập 4: Tính diện tích và chu vi hình chữ nhật</h1>
+        <div>
+            <input type="number" id="txtNumBT4_width" class="form-control" placeholder="Nhập chiều rộng"/>
+            <input type="number" id="txtNumBT4_heigth" class="form-control mt-1" placeholder="Nhập chiều dài"/>
+            <div id="resultBT4" class="alert alert-primary mt-3"></div>
+            <button class="btn btn-outline-danger" onclick="baiTap4()">Kết quả</button>
+        </div>
+
+        <hr/>
+        <h1>Bài tập 5: Tính tổng 2 ký số</h1>
+        <div>
+            <input type="number" id="txtNumBT5" class="form-control"  placeholder="Nhập số có 2 chữ số" />
+            <div id="resultBT5" class="alert alert-secondary mt-3"></div>
+            <button class="btn btn-outline-danger" onclick="baiTap5()">Kết quả</button>
+        </div>
+    </div>
     <script src="JavaScript.js"></script>
 </body>
 </html>
