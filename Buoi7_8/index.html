@@ -12,7 +12,12 @@
   </head>
   <style>
     body {
-      padding: 50px 400px;
+      padding: 50px 600px;
+      display: flex;
+      flex-direction: column;
+    }
+    .dvFunction {
+      margin-top: 10px;
     }
   </style>
   <body>
@@ -25,46 +30,121 @@
         <div id="resultNumber" class="alert alert-success mt-3"></div>
       </div>
 
-      <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-        Bài 1: Tổng số dương
-      </button>
-      <div id="collapseExample" class="collapse">
-        <div id="resultBT" class="alert alert-success mt-3"></div>
-        <button class="btn btn-success" onclick="baiTap1()">Kết quả</button>
-      </div>
-
-      <hr>
-      <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample2">
-        Bài 2: Đếm số dương
-      </button>
-      <div id="collapseExample2" class="collapse">
-        <div id="resultBT2" class="alert alert-success mt-3"></div>
-        <button class="btn btn-success" onclick="baiTap2()">Kết quả</button>
-      </div>
-
-      <hr>
-      <h1>Bài 3: Tính giai thừa</h1>
-      <div>
-        <input id="inputBT3" type="number" class="form-control" placeholder="Nhập số n">
-        <div id="resultBT3" class="alert alert-success mt-3"></div>
-        <button class="btn btn-success" onclick="baiTap3()">Kết quả</button>
-      </div>
-      
-      <hr>
-      <h1>Bài 4: </h1>
-      <div>
-        <button class="btn btn-success" onclick="baiTap4()">Tạo div</button>
-        <div id="resultBT4" class="alert alert-success mt-3">
-
+      <div class="dvFunction">
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+          Bài 1: Tổng số dương
+        </button>
+        <div id="collapseExample" class="collapse">
+          <div id="resultBT" class="alert alert-success mt-3"></div>
+          <button class="btn btn-success" onclick="baiTap1()">Kết quả</button>
         </div>
+      </div>
+     
+
+      <div class="dvFunction">
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample2">
+          Bài 2: Đếm số dương
+        </button>
+        <div id="collapseExample2" class="collapse">
+          <div id="resultBT2" class="alert alert-success mt-3"></div>
+          <button class="btn btn-success" onclick="baiTap2()">Kết quả</button>
+        </div>
+      </div>
       
+      <div class="dvFunction">
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample3">
+          Bài 3: Tìm số nhỏ nhất
+        </button>
+        
+        <div id="collapseExample3" class="collapse">
+          <div id="resultBT3" class="alert alert-success mt-3"></div>
+          <button class="btn btn-success" onclick="baiTap3()">Kết quả</button>
+        </div>
+      </div>
+    
+      
+      <div class="dvFunction">
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample4" aria-expanded="false" aria-controls="collapseExample4">
+          Bài 4: Tìm số dương nhỏ nhất
+        </button>
+        
+        <div id="collapseExample4" class="collapse">
+          <div id="resultBT4" class="alert alert-success mt-3"></div>
+          <button class="btn btn-success" onclick="baiTap4()">Kết quả</button>
+        </div>
+      </div>
+    
+      <div class="dvFunction">
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample5" aria-expanded="false" aria-controls="collapseExample5">
+          Bài 5: Tìm số chẵn cuối cùng
+        </button>
+        
+        <div id="collapseExample5" class="collapse">
+          <div id="resultBT5" class="alert alert-success mt-3"></div>
+          <button class="btn btn-success" onclick="baiTap5()">Kết quả</button>
+        </div>
       </div>
 
-
-      <div style="display: flex;">
-        <input style="width: 200px; margin-right:10px" id="base" type="number" class="form-control" placeholder="Nhập số x">
-        <input style="width: 200px;" id="exponent" type="number" class="form-control" placeholder="Nhập số n">
+      <div class="dvFunction">
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample6" aria-expanded="false" aria-controls="collapseExample6">
+          Bài 6: Đổi chỗ
+        </button>
+        
+        <div id="collapseExample6" class="collapse">
+          <div style="display: flex; margin-top: 10px;">
+            <input style="width: 200px; margin-right:10px" id="pos1" type="number" class="form-control" placeholder="Nhập số vị trí 1">
+            <input style="width: 200px;" id="pos2" type="number" class="form-control" placeholder="Nhập số vị trí 2">
+          </div>
+          <div id="resultBT6" class="alert alert-success mt-3"></div>
+          <button class="btn btn-success" onclick="baiTap6()">Kết quả</button>
+        </div>
       </div>
+
+      <div class="dvFunction">
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample7" aria-expanded="false" aria-controls="collapseExample7">
+          Bài 7: Sắp xếp tăng dần
+        </button>
+        
+        <div id="collapseExample7" class="collapse">
+          <div id="resultBT7" class="alert alert-success mt-3"></div>
+          <button class="btn btn-success" onclick="baiTap7()">Kết quả</button>
+        </div>
+      </div>
+
+      <div class="dvFunction">
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample8" aria-expanded="false" aria-controls="collapseExample8">
+          Bài 8: Tìm số nguyên tố đầu tiên
+        </button>
+        
+        <div id="collapseExample8" class="collapse">
+          <div id="resultBT8" class="alert alert-success mt-3"></div>
+          <button class="btn btn-success" onclick="baiTap8()">Kết quả</button>
+        </div>
+      </div>
+
+      <div class="dvFunction">
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample9" aria-expanded="false" aria-controls="collapseExample9">
+          Bài 9: Đếm số nguyên
+        </button>
+        
+        <div id="collapseExample9" class="collapse">
+          <div id="resultBT9" class="alert alert-success mt-3"></div>
+          <button class="btn btn-success" onclick="baiTap9()">Kết quả</button>
+        </div>
+      </div>
+
+      <div class="dvFunction">
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample10" aria-expanded="false" aria-controls="collapseExample10">
+          Bài 10: So sánh số lượng số âm và dương
+        </button>
+        
+        <div id="collapseExample10" class="collapse">
+          <div id="resultBT10" class="alert alert-success mt-3"></div>
+          <button class="btn btn-success" onclick="baiTap10()">Kết quả</button>
+        </div>
+      </div>
+
+   
 
     <!-- Bootstrap JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
