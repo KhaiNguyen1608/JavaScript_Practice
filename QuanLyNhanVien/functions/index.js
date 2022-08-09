@@ -22,8 +22,21 @@ document.getElementById("btnThem").onclick = function() {
 
 
 function fnAddEmployee() {
-    var gioLam = document.getElementById("gioLam").value;
+    var gioLam = document.getElementById("gioLam").value*1;
     var performance1 = ''
+    if (gioLam >= 192) {
+      performance1 = "Xuất sắc"
+    }
+    else if (gioLam >= 176) {
+      performance1 = "Giỏi"
+    }
+    else if (gioLam >= 160) {
+      performance1 = "Khá"
+    }
+    else {
+      performance1 = "Trung bình"
+    }
+    empId = randomFixedInteger(5)
     var emp = new Employee(
       empId,
       document.getElementById("tknv").value,
@@ -40,24 +53,14 @@ function fnAddEmployee() {
     if(validate(emp) === false) {
       return;
     }
-    empId = randomFixedInteger(5)
     
-    if (gioLam >= 192) {
-      performance1 = "Xuất sắc"
-    }
-    else if (gioLam >= 176) {
-      performance1 = "Giỏi"
-    }
-    else if (gioLam >= 160) {
-      performance1 = "Khá"
-    }
-    else {
-      performance1 = "Trung bình"
-    }
+  
    
     
     lstEmp.push(emp)
     renderEmployeeList(lstEmp);
+    //thêm vào local storage
+    saveLocalStorage(lstEmp, 'arrEmployee');
 }
 
 function renderEmployeeList(arrEmp) { 
@@ -114,12 +117,12 @@ function delEmployee(idClick) {
     }
     renderEmployeeList(lstEmp);
   
-    // saveLocalStorage(lstEmp, 'arrSV');
-    // if (indexDel !== -1) { //tìm thấy
-    //   lstEmp.splice(indexDel, 1);
-    //   //Gọi lại hàm render table mới
-    //   //Lưu danh sách sau khi xoá vào storage
-    // }
+    saveLocalStorage(lstEmp, 'arrEmployee');
+    if (indexDel !== -1) { //tìm thấy
+      lstEmp.splice(indexDel, 1);
+      //Gọi lại hàm render table mới
+      //Lưu danh sách sau khi xoá vào storage
+    }
   }
 
 
@@ -134,6 +137,7 @@ function editEmployee(idClick) {
   if (editRow !== null) {
     //Đưa dữ liệu lên các control input
     empId = editRow.id
+    document.getElementById("tknv").value = editRow.userlogin
     document.getElementById("name").value = editRow.name
     document.getElementById("email").value = editRow.email
     document.getElementById("password").value = editRow.password 
@@ -149,6 +153,7 @@ document.getElementById("btnCapNhat").onclick = updateEmp;
 function updateEmp() {
     var updateEmployee = new Employee();
     updateEmployee.id = empId
+    updateEmployee.userlogin =  document.getElementById("tknv").value
     updateEmployee.name = document.getElementById("name").value
     updateEmployee.email = document.getElementById("email").value
     updateEmployee.password = document.getElementById("password").value
@@ -221,7 +226,7 @@ function searchStudent() {  //expression function(Không hỗ hoisting)
   renderEmployeeList(output);
 }
 //Dom đến txtSearch cài đặt sự kiện oninput cho nó
-// document.querySelector('#searchName').oninput = searchStudent;
+document.querySelector('#searchName').oninput = searchStudent;
 //Tìm kiếm
 document.getElementById('searchName').addEventListener("keypress",function(event){
     if(event.key === "Enter") {
@@ -240,24 +245,26 @@ function validate(emp) {
     document.getElementById("tbChucVu").style.display = 'none'
     document.getElementById("tbGiolam").style.display = 'none'
 
-    var regNumber = new RegExp('/^[0-9]+$/');
-    var onlyLetter = new RegExp('^[A-Za-z]+$');
-    var regEmail = new RegExp('/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/');
+    let regNumber = /[^0-9]/g; //Kiểm tra Chỉ có các ký tự số
+    let onlyLetter = /^[A-Za-z]+$/;
+    var regEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     var regPass = new RegExp('/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{0,}$/');
     var regDate = new RegExp('/^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/');
-    if(emp.userlogin.trim() === '' || !regNumber.test(emp.userlogin.trim()) || document.getElementById("tknv").value.length < 4 || document.getElementById("tknv").value.length > 6) {
+
+    var tempName = removeVietnameseTones(emp.name)
+    if(emp.userlogin.trim() === '' || regNumber.test(emp.userlogin.trim()) || document.getElementById("tknv").value.length < 4 || document.getElementById("tknv").value.length > 6) {
         document.getElementById("tbTKNV").innerHTML = '** Tài khoản chỉ được 4-6 ký số, không để trống **'
         document.getElementById("tbTKNV").style.display = 'inline-block'
         isValid = false;
     }
 
-    if(emp.name.trim() === '' || !onlyLetter.test(emp.name.trim())) {
+    if(emp.name.trim() === '' || !onlyLetter.test(tempName)) {
         document.getElementById("tbTen").innerHTML = '** Tên nhân viên phải là chữ, không để trống **'
         document.getElementById("tbTen").style.display = 'inline-block'
         isValid = false;
     }
 
-    if(emp.email.trim() === '') {
+    if(emp.email.trim() === '' || !regEmail.test(emp.email)) {
         document.getElementById("tbEmail").innerHTML = '** Email phải đúng định dạng, không để trống **'
         document.getElementById("tbEmail").style.display = 'inline-block'
         isValid = false;
@@ -275,7 +282,7 @@ function validate(emp) {
         isValid =  false;
     }
     
-    if(emp.luongCB.trim() === '' || emp.luongCB*1 < 1000000 || emp.luongCB*1 > 20000000) {
+    if(emp.luongCB*1 < 1000000 || emp.luongCB*1 > 20000000) {
         document.getElementById("tbLuongCB").innerHTML = '** Lương cơ bản 1 000 000 - 20 000 000, không để trống **'
         document.getElementById("tbLuongCB").style.display = 'inline-block'
         isValid = false;
@@ -292,4 +299,35 @@ function validate(emp) {
     }
 
     return isValid;
+}
+
+
+function saveLocalStorage(ob, key) { // {} , []
+  var str = JSON.stringify(ob);
+  localStorage.setItem(key, str);
+}
+
+
+
+function getLocalStorage(key) {
+  //Lấy dữ liệu từ localstorage ra (dữ liệu lấy là string)
+  if (localStorage.getItem(key)) {
+    var str = localStorage.getItem(key);
+    //Parse dữ liệu về lại object
+    var ob = JSON.parse(str);
+    return ob;
+  }
+  return undefined;
+}
+
+
+//đợi html js load xong thì sẽ động thực thi
+window.onload = function () {
+  
+  lstEmp = getLocalStorage('arrEmployee');
+  if (lstEmp == undefined) {
+    lstEmp = [];
+  }
+ 
+  renderEmployeeList(lstEmp);
 }
